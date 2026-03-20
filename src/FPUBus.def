@@ -1,0 +1,15 @@
+DEFINITION MODULE FPUBus;
+
+(* Clockport bus interface. Handles the register-level protocol:
+   watches for CMD writes, collects operands, dispatches to FPUCore,
+   and posts results back to the bus registers. *)
+
+PROCEDURE Init;
+PROCEDURE Poll;
+(* Call from main loop. Checks if a command has been written,
+   and if so, executes it and posts the result. *)
+
+PROCEDURE GetOpCount(): CARDINAL;
+(* Total operations dispatched since Init. *)
+
+END FPUBus.

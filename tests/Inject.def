@@ -1,0 +1,11 @@
+DEFINITION MODULE FOR "C" Inject;
+
+(* Test helpers from bus.c for injecting commands
+   and reading results without going through the bus protocol. *)
+
+PROCEDURE bus_inject_cmd(cmd: INTEGER; argA, argB: CARDINAL);
+PROCEDURE bus_get_result(): CARDINAL;
+PROCEDURE bus_get_status(): INTEGER;
+PROCEDURE bus_clear_cmd;
+
+END Inject.

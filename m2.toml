@@ -1,0 +1,16 @@
+name=amigasoftfpu
+version=0.1.0
+entry=src/Main.mod
+includes=src
+edition=pim4
+
+[deps]
+m2float=path:../m2float
+
+[cc]
+cflags=-std=c99 -ffp-contract=off
+extra-c=esp/bus.c esp/gpio_bridge.c
+
+[test]
+entry=tests/Main.mod
+includes=tests

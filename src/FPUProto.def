@@ -1,0 +1,59 @@
+DEFINITION MODULE FPUProto;
+
+(* Clockport register protocol for the Amiga FPU co-processor.
+   Defines opcodes, status bits, and the register layout. *)
+
+(* --- Opcodes written to CMD register --- *)
+
+CONST
+  CmdNop   = 0;
+  CmdAdd   = 1;
+  CmdSub   = 2;
+  CmdMul   = 3;
+  CmdDiv   = 4;
+  CmdSqrt  = 5;
+  CmdNeg   = 6;
+  CmdAbs   = 7;
+  CmdCmp   = 8;   (* compare: result = -1, 0, or 1 as integer bits *)
+  CmdI2F   = 9;   (* integer to float: argA bits treated as int32 *)
+  CmdF2I   = 10;  (* float to integer: truncate toward zero *)
+  CmdMod   = 11;  (* IEEE remainder *)
+  CmdDAdd  = 32;  (* double-precision variants, offset by 32 *)
+  CmdDSub  = 33;
+  CmdDMul  = 34;
+  CmdDDiv  = 35;
+  CmdDSqrt = 36;
+  CmdPing  = 255; (* returns protocol version in result *)
+
+(* --- Status register bits --- *)
+
+CONST
+  StReady  = 1;   (* bit 0: result is ready *)
+  StNaN    = 2;   (* bit 1: result is NaN *)
+  StInf    = 4;   (* bit 2: result is infinity *)
+  StZero   = 8;   (* bit 3: result is zero *)
+  StNeg    = 16;  (* bit 4: result is negative *)
+  StOvfl   = 32;  (* bit 5: overflow occurred *)
+  StDivZ   = 64;  (* bit 6: division by zero *)
+  StInval  = 128; (* bit 7: invalid operation *)
+
+(* --- Protocol version --- *)
+
+CONST
+  ProtoVersion = 1;
+
+(* --- Clockport register offsets (accent, accent from base) --- *)
+(* accent, accent, accent, accent, accent, accent, accent, accent *)
+(* The clockport provides registers at even byte offsets $00-$0E *)
+
+CONST
+  RegCmd    = 0;
+  RegArgAHi = 2;
+  RegArgALo = 4;
+  RegArgBHi = 6;
+  RegArgBLo = 8;
+  RegResHi  = 10;
+  RegResLo  = 12;
+  RegStatus = 14;
+
+END FPUProto.

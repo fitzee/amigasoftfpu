@@ -1,0 +1,10 @@
+DEFINITION MODULE FPUCore;
+
+(* FPU dispatch engine. Accepts a command and two 32-bit operands,
+   performs the operation, returns the 32-bit result and status byte. *)
+
+PROCEDURE Init;
+PROCEDURE Execute(cmd: CARDINAL; argA, argB: CARDINAL;
+                  VAR result: CARDINAL; VAR status: CARDINAL);
+
+END FPUCore.

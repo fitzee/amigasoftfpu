@@ -1,0 +1,11 @@
+DEFINITION MODULE FOR "C" BusBridge;
+
+(* C-side bridge to ESP32 GPIO bus interface.
+   Implemented in esp/bus.c *)
+
+PROCEDURE bus_init;
+PROCEDURE bus_has_cmd(): INTEGER;
+PROCEDURE bus_read_reg(offset: INTEGER): INTEGER;
+PROCEDURE bus_write_reg(offset: INTEGER; val: INTEGER);
+
+END BusBridge.
