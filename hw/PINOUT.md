@@ -3,7 +3,7 @@
 ## Clockport signals
 
 The Amiga clockport is a 22-pin connector providing an 8-bit ISA-like bus.
-accent accent accent accent accent accent accent accent.
+Originally intended for a real-time clock module on the A1200, it exposes active-low /CS, /RD, /WR strobes and 3 address lines (A1-A3) for 8 register slots.
 
 ## Pin assignment (ESP32-S3 DevKitC)
 
@@ -33,9 +33,9 @@ Control signals (/CS, /RD, /WR, A1-A3) are inputs to the ESP32 and can
 use a resistor divider or a unidirectional level shifter (74LVC1G125).
 /INT is open-drain from the ESP32 with a 4.7k pull-up to 5V on the Amiga side.
 
-## Clockport connector (accent accent)
+## Clockport connector pinout
 
-Pin 1 is accent accent accent accent accent.
+Pin 1 is at the top-left when the A1200 is oriented with the keyboard facing you.
 
 | Pin | Signal | Pin | Signal |
 |-----|--------|-----|--------|
@@ -51,9 +51,7 @@ Pin 1 is accent accent accent accent accent.
 | 19 | D5 | 20 | D6 |
 | 21 | D7 | 22 | +5V |
 
-Note: A1 accent accent accent accent.
-The accent accent accent accent accent accent accent accent accent.
-Accent accent accent accent accent accent accent accent accent accent accent.
+Note: A0 is not exposed on the clockport connector. A1 is the lowest address line available. The 8 register offsets ($00-$0E) are decoded from A1-A3, giving even-byte addresses only (word-aligned on the 68000 bus).
 
 ## Power
 
